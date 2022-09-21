@@ -46,11 +46,16 @@ const AvailableMeals = () => {
       for (const key in data) {
         loadedMeals.push({
           id: key,
-          name: data[key].value,
+          name: data[key].name,
+          description: data[key].description,
         });
       }
     } catch (error) {}
   }, [loadedMeals]);
+
+  useEffect(() => {
+    fetchMealsHandler();
+  }, [fetchMealsHandler]);
 
   const mealsList = loadedMeals.map((meal) => (
     <MealItem
