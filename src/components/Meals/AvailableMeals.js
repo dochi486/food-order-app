@@ -3,35 +3,8 @@ import classes from './AvailableMeals.module.css';
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 
-const DUMMY_MEALS = [
-  {
-    id: 'm1',
-    name: 'Sushi',
-    description: 'Finest fish and veggies',
-    price: 22300,
-  },
-  {
-    id: 'm2',
-    name: 'Schnitzel',
-    description: 'A german specialty!',
-    price: 16500,
-  },
-  {
-    id: 'm3',
-    name: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    price: 13000,
-  },
-  {
-    id: 'm4',
-    name: 'Green Bowl',
-    description: 'Healthy...and green...',
-    price: 19000,
-  },
-];
-
 const AvailableMeals = () => {
-  const loadedMeals = [];
+  let loadedMeals = [];
 
   const fetchMealsHandler = useCallback(async () => {
     try {
@@ -48,6 +21,7 @@ const AvailableMeals = () => {
           id: key,
           name: data[key].name,
           description: data[key].description,
+          price: data[key].price,
         });
       }
     } catch (error) {}
