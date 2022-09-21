@@ -5,8 +5,13 @@ import MealItem from './MealItem/MealItem';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const fetchMealsHandler = async () => {
+    const fetchMeals = async () => {
+      setError(null);
+      setIsLoading(true);
       try {
         const response = await fetch(
           'https://react-http-45232-default-rtdb.firebaseio.com/meals.json'
@@ -27,11 +32,21 @@ const AvailableMeals = () => {
           });
         }
         setMeals(loadedMeals);
-      } catch (error) {}
+      } catch (error) {
+        setError(error.message);
+      }
+
+      setIsLoading(false);
     };
 
-    fetchMealsHandler();
+    fetchMeals();
   }, []);
+
+  let content = <p>배달 가능한 음식이 없습니다.</p>;
+
+  if (isLoading) content = <p>로딩 중...</p>;
+
+  if (error) content = <p>{error}</p>;
 
   const mealsList = meals.map((meal) => (
     <MealItem
@@ -46,6 +61,7 @@ const AvailableMeals = () => {
   return (
     <section className={classes.meals}>
       <Card>
+        {isLoading && content}
         <ul>{mealsList}</ul>
       </Card>
     </section>
