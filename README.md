@@ -1,5 +1,5 @@
 # food-order-app
-리액트를 사용해서 만든 음식 주문 배달 웹 어플리케이션[링크](https://papaya-mooncake-fc7933.netlify.app/)입니다.
+리액트를 사용해서 만든 음식 주문 배달 [웹어플리케이션](https://papaya-mooncake-fc7933.netlify.app/)입니다.
 
 ## 기술 스택  
 - 리액트로 컴포넌트 생성
